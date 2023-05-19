@@ -12,13 +12,13 @@ class Timesheet{
   String oreInizioAttivita;
   String oreFineAttivita;
   int oreStraordinario;
-  String oreInizioStraordinario;
-  String oreFineStraordinario;
+  String? oreInizioStraordinario;
+  String? oreFineStraordinario;
   int oreReperibilita;
-  String oreFrazionabili;
+  String? oreFrazionabili;
   String descrizioneAttivita;
-  String destinazioneSedeCliente;
-  String tipoDestinazione;
+  String? destinazioneSedeCliente;
+  String? tipoDestinazione;
   double kmEffettivi;
   double costoTrasferta;
   double costoAlbergo;
@@ -26,18 +26,18 @@ class Timesheet{
   double costoViaggio;
   double costoParcheggio;
   double rimborsoSpese;
-  String descrizioneRimborsoSpese;
-  String ticket;
+  String? descrizioneRimborsoSpese;
+  String? ticket;
   int autoAzi;
   double rimborsoKm;
   double totaleSpese;
   int annoIntervento;
   int numeroIntervento;
   int flagRIA;
-  String dataRIA; //Date dataRIA;
-  String emailCliente;
-  String emailDipendente;
-  String emailAggiuntiva;
+  String? dataRIA; //Date dataRIA;
+  String? emailCliente;
+  String? emailDipendente;
+  String? emailAggiuntiva;
 
   Timesheet(
       this.codiceCommessa,

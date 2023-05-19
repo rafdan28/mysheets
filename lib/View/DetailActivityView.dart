@@ -1,5 +1,7 @@
 // ignore_for_file: library_private_types_in_public_api, use_build_context_synchronously
 
+
+
 import 'dart:convert';
 import 'dart:developer';
 
@@ -592,6 +594,14 @@ class _DetailViewState extends State<DetailView> {
     log('Attività del giorno ${giornoSelezionato.toIso8601String().substring(0, 10)} - Body 2: ' +
         response.body);
     late List<dynamic> jsonResponse2 = json.decode(response.body);
+    String inizioStra = "00:00";
+    String fineStra = "00:00";
+    if(jsonResponse2[0]['oreInizioStraordinario'] != null){
+      inizioStra = jsonResponse2[0]['oreInizioStraordinario'];
+    }
+    if(jsonResponse2[0]['oreFineStraordinario'] != null){
+      fineStra = jsonResponse2[0]['oreFineStraordinario'];
+    }
     Timesheet timesheet = Timesheet(
         jsonResponse2[0]['codiceCommessa'],
         jsonResponse2[0]['descrizioneCommessa'],
@@ -606,13 +616,13 @@ class _DetailViewState extends State<DetailView> {
         jsonResponse2[0]['oreInizioAttivita'],
         jsonResponse2[0]['oreFineAttivita'],
         jsonResponse2[0]['oreStraordinario'],
-        jsonResponse2[0]['oreInizioStraordinario'],
-        jsonResponse2[0]['oreFineStraordinario'],
+        jsonResponse2[0]['oreInizioStraordinario'] as String?,
+        jsonResponse2[0]['oreFineStraordinario'] as String?,
         jsonResponse2[0]['oreReperibilita'],
-        jsonResponse2[0]['oreFrazionabili'],
+        jsonResponse2[0]['oreFrazionabili'] as String?,
         jsonResponse2[0]['descrizioneAttivita'],
-        jsonResponse2[0]['destinazioneSedeCliente'],
-        jsonResponse2[0]['tipoDestinazione'],
+        jsonResponse2[0]['destinazioneSedeCliente'] as String?,
+        jsonResponse2[0]['tipoDestinazione'] as String?,
         jsonResponse2[0]['kmEffettivi'],
         jsonResponse2[0]['costoTrasferta'],
         jsonResponse2[0]['costoAlbergo'],
@@ -620,35 +630,35 @@ class _DetailViewState extends State<DetailView> {
         jsonResponse2[0]['costoViaggio'],
         jsonResponse2[0]['costoParcheggio'],
         jsonResponse2[0]['rimborsoSpese'],
-        jsonResponse2[0]['descrizioneRimborsoSpese'],
-        jsonResponse2[0]['ticket'],
+        jsonResponse2[0]['descrizioneRimborsoSpese'] as String?,
+        jsonResponse2[0]['ticket'] as String?,
         jsonResponse2[0]['autoAzi'],
         jsonResponse2[0]['rimborsoKm'],
         jsonResponse2[0]['totaleSpese'],
         jsonResponse2[0]['annoIntervento'],
         jsonResponse2[0]['numeroIntervento'],
         jsonResponse2[0]['flagRIA'],
-        jsonResponse2[0]['dataRIA'],
-        jsonResponse2[0]['emailCliente'],
-        jsonResponse2[0]['emailDipendente'],
-        jsonResponse2[0]['emailAggiuntiva']);
+        jsonResponse2[0]['dataRIA'] as String?,
+        jsonResponse2[0]['emailCliente'] as String?,
+        jsonResponse2[0]['emailDipendente'] as String?,
+        jsonResponse2[0]['emailAggiuntiva'] as String? );
         setFlussoQuali(timesheet);
-        setHour(timesheet);
+        // setHour(timesheet);
     return timesheet;
 
   }
 
-  void setHour(Timesheet timesheet) {
-    if (timesheet.oreFrazionabili == null || timesheet.oreFrazionabili.trim() == "null" || timesheet.oreFrazionabili.trim().isEmpty) {
-      timesheet.oreFrazionabili = "8h";
-    }
-    if (timesheet.oreInizioStraordinario == null || timesheet.oreInizioStraordinario.trim() == "null" || timesheet.oreInizioStraordinario.trim().isEmpty) {
-      timesheet.oreInizioStraordinario = "00:00";
-    }
-    if (timesheet.oreFineStraordinario == null || timesheet.oreFineStraordinario.trim() == "null" || timesheet.oreFineStraordinario.trim().isEmpty) {
-      timesheet.oreFineStraordinario = "00:00";
-    }
-  }
+  // void setHour(Timesheet timesheet) {
+  //   if (timesheet.oreFrazionabili == null || timesheet.oreFrazionabili.trim() == "null" || timesheet.oreFrazionabili.trim().isEmpty) {
+  //     timesheet.oreFrazionabili = "8h";
+  //   }
+  //   if (timesheet.oreInizioStraordinario == null || timesheet.oreInizioStraordinario.trim() == "null" || timesheet.oreInizioStraordinario.trim().isEmpty) {
+  //     timesheet.oreInizioStraordinario = "00:00";
+  //   }
+  //   if (timesheet.oreFineStraordinario == null || timesheet.oreFineStraordinario.trim() == "null" || timesheet.oreFineStraordinario.trim().isEmpty) {
+  //     timesheet.oreFineStraordinario = "00:00";
+  //   }
+  // }
 
   void setFlussoQuali(Timesheet timesheet){
     if(timesheet.flussoQualita == 'COFCLI') {

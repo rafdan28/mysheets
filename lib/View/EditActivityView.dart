@@ -799,7 +799,7 @@ class _EditActivityViewState extends State<EditActivityView> {
       int minfin = int.parse(timesheet.oreFineAttivita.substring(3,5));
       _oraFine = _oraFine.replacing(hour: orefin, minute: minfin);
 
-      oreFrazValue = timesheet.oreFrazionabili.trim();
+      oreFrazValue = timesheet.oreFrazionabili!.trim();
       flussoQualiValue = timesheet.flussoQualita.trim();
 
     } else {
@@ -819,14 +819,14 @@ class _EditActivityViewState extends State<EditActivityView> {
   void formatHourStra({bool reverse = false}) {
     if (!reverse) {
       if (timesheet.oreInizioStraordinario != null) {
-        int oreiniz = int.parse(timesheet.oreInizioStraordinario.substring(0, 2));
-        int mininiz = int.parse(timesheet.oreInizioStraordinario.substring(3, 5));
+        int oreiniz = int.parse(timesheet.oreInizioStraordinario!.substring(0, 2));
+        int mininiz = int.parse(timesheet.oreInizioStraordinario!.substring(3, 5));
         _oraInizioStra = TimeOfDay(hour: oreiniz, minute: mininiz);
       }
 
       if (timesheet.oreFineStraordinario != null) {
-        int orefin = int.parse(timesheet.oreFineStraordinario.substring(0, 2));
-        int minfin = int.parse(timesheet.oreFineStraordinario.substring(3, 5));
+        int orefin = int.parse(timesheet.oreFineStraordinario!.substring(0, 2));
+        int minfin = int.parse(timesheet.oreFineStraordinario!.substring(3, 5));
         _oraFineStra = TimeOfDay(hour: orefin, minute: minfin);
       }
 

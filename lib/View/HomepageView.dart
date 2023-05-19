@@ -29,7 +29,7 @@ class Homepage extends StatefulWidget {
 
 class _HomepageState extends State<Homepage> {
   late DateTime _selectedDay;
-  late CalendarController _controller;
+  // late CalendarController _controller;
   late Map<String, dynamic> jsonResponse;
   List<Attivita> attivitaList = [];
 
@@ -40,7 +40,7 @@ class _HomepageState extends State<Homepage> {
   void initState() {
     super.initState();
     initializeDateFormatting();
-    _controller = CalendarController();
+    // _controller = CalendarController();
     _selectedDay = DateTime.now();
     loadActivity();
     // Nascondi la navbar del telefono
@@ -50,7 +50,7 @@ class _HomepageState extends State<Homepage> {
   @override
   void dispose() {
     super.dispose();
-    _controller.dispose();
+    // _controller.dispose();
   }
 
   TextStyle dayStyle(FontWeight fontWeight) {
@@ -142,25 +142,25 @@ class _HomepageState extends State<Homepage> {
             TableCalendar(
               locale: Localizations.localeOf(context).languageCode,
               availableGestures: AvailableGestures.none,
-              calendarController: _controller,
+              // calendarController: _controller,
               startingDayOfWeek: StartingDayOfWeek.monday,
-              calendarStyle: CalendarStyle(
-                weekdayStyle: dayStyle(FontWeight.normal),
-                selectedColor: Colors.black,
+              calendarStyle: const CalendarStyle(
+                // weekdayStyle: dayStyle(FontWeight.normal),
+                // selectedColor: Colors.black,
               ),
-              daysOfWeekStyle: DaysOfWeekStyle(
-                weekendStyle: const TextStyle(
+              daysOfWeekStyle: const DaysOfWeekStyle(
+                weekendStyle: TextStyle(
                   color: MyColor.dayWeek,
                   fontWeight: FontWeight.bold,
                   fontSize: 16,
                 ),
-                weekdayStyle: const TextStyle(
+                weekdayStyle: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 16,
                 ),
-                dowTextBuilder: (date, locale) {
-                  return DateFormat.E(locale).format(date).substring(0, 1);
-                },
+                // dowTextBuilder: (date, locale) {
+                //   return DateFormat.E(locale).format(date).substring(0, 1);
+                // },
               ),
               headerStyle: const HeaderStyle(
                 formatButtonVisible: false,
@@ -178,12 +178,15 @@ class _HomepageState extends State<Homepage> {
                   color: Colors.black,
                 ),
               ),
-              onDaySelected: (date, events, _) {
+              onDaySelected: (date, events) {
                 setState(() {
                   _selectedDay = date;
                 });
                 loadActivity();
               },
+              firstDay: DateTime.utc(2010, 10, 16),
+              lastDay: DateTime.utc(2030, 3, 14),
+              focusedDay: DateTime.now(),
             ),
           const SizedBox(height: 20),
           Expanded(child: _buildCard()),
